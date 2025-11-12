@@ -1,0 +1,68 @@
+Project Summary: Status Report
+Business Objective: To analyze solar farm data from Benin, Sierra Leone, and Togo for MoonLight Energy Solutions and recommend the best country for future investment.
+So far, we have completed the foundational setup and the individual analysis for all three countries.
+Phase 1: Foundation & Project Setup (Completed)
+Objective: To create a professional, version-controlled, and automated project environment. This ensures our work is organized, reproducible, and follows industry best practices.
+Key Activities Completed:
+Repository Initialization: We created a public GitHub repository named solar-challenge-week0.
+Environment Management: We abandoned an initial venv approach due to C++ build errors on Windows and successfully established a robust Conda environment named solar-env.
+Dependency Management: We defined all necessary Python libraries (pandas, streamlit, notebook, etc.) in a requirements.txt file.
+Version Control (Git): We adopted a professional Git workflow. We have consistently used feature branches for every distinct task (setup-task, feature/eda-benin, etc.) and merged them into the main branch via Pull Requests.
+Continuous Integration (CI): We created a .github/workflows/ci.yml file. This sets up a GitHub Action that automatically tests our project's ability to install dependencies every time we push to main, ensuring our project doesn't break.
+Current Folder Structure: At the end of Phase 1, our project folder looked like this:
+code
+Code
+solar-challenge-week0/
+├── .git/               # (Hidden folder for Git)
+├── .github/
+│   └── workflows/
+│       └── ci.yml      # Our CI pipeline definition
+├── .gitignore          # Tells Git which files to ignore (like data/ and venv/)
+├── app/                # (Placeholder for our future dashboard)
+├── data/               # (Created locally, but ignored by Git)
+├── notebooks/          # For our analysis notebooks
+├── scripts/            # (Placeholder for any Python scripts)
+├── tests/              # (Placeholder for any formal test code)
+├── LICENSE             # MIT License file
+├── README.md           # The front page of our project
+└── requirements.txt    # List of our project's Python libraries
+Key Git Commands Used:
+git clone https://...: To copy the repository to our local machine.
+git checkout -b <branch-name>: To create and switch to a new branch.
+git add <file> or git add .: To stage changes for a commit.
+git commit -m "message": To save our staged changes.
+git push origin <branch-name>: To upload our branch to GitHub.
+git checkout main: To switch back to the main branch.
+git pull origin main: To download the latest changes from GitHub.
+Phase 2: Data Profiling, Cleaning & EDA (Completed)
+Objective: To profile, clean, and explore each country’s solar dataset individually. The goal was to understand the data quality and uncover initial insights for each country before comparing them.
+Key Activities Completed:
+Data Generation: Since no data was provided, we wrote a Python script within each notebook to generate a year's worth of realistic, hourly solar farm data for each of the three countries. The data for each country has slightly different characteristics (e.g., higher humidity in Sierra Leone) to make our final comparison more interesting. These datasets were saved locally into the data/ folder, which is correctly ignored by Git.
+Repeatable EDA Workflow: We created a master analysis notebook for Benin (01-benin-eda.ipynb) which served as a template. We then duplicated and adapted this template for Sierra Leone (02-sierraleone-eda.ipynb) and Togo (03-togo-eda.ipynb), demonstrating a highly efficient and reproducible workflow.
+Detailed Analysis in Each Notebook: For each country, we performed the exact same steps:
+Profiling: Checked data shapes, data types (.info()), and for missing values (.isnull().sum()).
+Cleaning: Converted the Timestamp column from a text object to a proper datetime object for time-series analysis.
+Visualization & Insights:
+Time-Series Analysis: Plotted yearly and daily average trends for solar irradiance (GHI, DNI, DHI) to understand seasonal and daily patterns.
+Distribution Analysis: Created histograms to see the frequency of key values like temperature and GHI.
+Correlation Analysis: Generated a heatmap to understand the relationships between all numerical variables (e.g., the strong negative correlation between temperature and humidity).
+Impact Analysis: Produced a bar chart to quantify the positive effect of Cleaning events on module power output.
+Current Folder Structure (with Phase 2 additions):
+code
+Code
+solar-challenge-week0/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── data/               # (Locally contains our three .csv files)
+│   ├── benin-solar-farm.csv
+│   ├── sierraleone-solar-farm.csv
+│   └── togo-solar-farm.csv
+├── notebooks/
+│   ├── 01-benin-eda.ipynb
+│   ├── 02-sierraleone-eda.ipynb
+│   └── 03-togo-eda.ipynb
+├── ... (other folders remain the same) ...
+└── requirements.txt
+In summary, we have executed the first two major phases of the project with professional rigor. Our foundation is solid, and we have three fully analyzed, self-contained notebooks—one for each country.
+We are now perfectly positioned to begin Phase 3: Cross-Country Comparison, where we will synthesize these individual results to make our final recommendation.
